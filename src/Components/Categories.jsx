@@ -1,11 +1,11 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 import { categories } from '../data';
 import CategoryItem from './CategoryItem';
-import {mobile} from '../responsive'
+import { mobile } from '../responsive';
 
 const Container = styled.div`
-    display: flex;  
+    display: flex;
     padding: 20px;
     justify-content: space-between;
     ${mobile({ padding: '0px', flexDirection: 'column' })}
@@ -16,7 +16,7 @@ export default function Categories() {
         <Container>
             {categories.map((item, index) => (
                 <CategoryItem key={index} item={item} />
-            ))}        
+            ))}
         </Container>
-    )
+    );
 }

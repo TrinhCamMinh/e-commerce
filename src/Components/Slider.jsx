@@ -1,9 +1,9 @@
-import { faArrowAltCircleLeft, faArrowAltCircleRight } from '@fortawesome/free-regular-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import { sliderItems } from '../data'
-import {mobile} from '../responsive'
+import { faArrowAltCircleLeft, faArrowAltCircleRight } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { sliderItems } from '../data';
+import { mobile } from '../responsive';
 
 const Container = styled.div`
     width: 100%;
@@ -11,7 +11,7 @@ const Container = styled.div`
     display: flex;
     position: relative;
     overflow: hidden;
-    ${mobile({ display: "none" })}
+    ${mobile({ display: 'none' })}
 `;
 
 const Arrow = styled.div`
@@ -25,8 +25,8 @@ const Arrow = styled.div`
     position: absolute;
     top: 0;
     bottom: 0;
-    left: ${props => props.direction === 'left' && '10px'};
-    right: ${props => props.direction === 'right' && '10px'};
+    left: ${(props) => props.direction === 'left' && '10px'};
+    right: ${(props) => props.direction === 'right' && '10px'};
     margin: auto;
     cursor: pointer;
     opacity: 0.5;
@@ -37,7 +37,7 @@ const Wrapper = styled.div`
     height: 100%;
     display: flex;
     transition: all 1s ease;
-    transform: translateX(${props => props.slideIndex * -100}vw); 
+    transform: translateX(${(props) => props.slideIndex * -100}vw);
 `;
 
 const Slide = styled.div`
@@ -86,24 +86,23 @@ export const Slider = () => {
     const [slideIndex, setSlideIndex] = useState(0);
 
     const handleClick = (direction) => {
-        if(direction === 'left') {
-            setSlideIndex(slideIndex > 0 ? slideIndex-1 : 2);
-        }
-        else {
-            setSlideIndex(slideIndex < 2 ? slideIndex+1 : 0);
+        if (direction === 'left') {
+            setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2);
+        } else {
+            setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0);
         }
     };
 
     return (
         <Container>
             <Arrow direction='left' onClick={() => handleClick('left')}>
-                <FontAwesomeIcon icon={faArrowAltCircleLeft} style={{fontSize: '30px'}}/>
+                <FontAwesomeIcon icon={faArrowAltCircleLeft} style={{ fontSize: '30px' }} />
             </Arrow>
             <Wrapper slideIndex={slideIndex}>
                 {sliderItems.map((item, index) => (
-                    <Slide key={index} bg={item.bg}>    
+                    <Slide key={index} bg={item.bg}>
                         <ImgContainer>
-                            <Image src={item.img}/>
+                            <Image src={item.img} />
                         </ImgContainer>
                         <InfoContainer>
                             <Title>{item.title}</Title>
@@ -114,8 +113,8 @@ export const Slider = () => {
                 ))}
             </Wrapper>
             <Arrow direction='right' onClick={() => handleClick('right')}>
-                <FontAwesomeIcon icon={faArrowAltCircleRight} style={{fontSize: '30px'}}/>
+                <FontAwesomeIcon icon={faArrowAltCircleRight} style={{ fontSize: '30px' }} />
             </Arrow>
         </Container>
-    )
-}
+    );
+};

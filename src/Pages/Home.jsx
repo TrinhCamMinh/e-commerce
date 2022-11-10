@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import Announcement from "../Components/Announcement";
-import Categories from "../Components/Categories";
-import Footer from "../Components/Footer";
-import NavBar from "../Components/NavBar";
-import Newsletter from "../Components/Newsletter";
-import Products from "../Components/Products";
-import Cart from "./Cart";
-import { Slider } from "../Components/Slider";
+import React, { useState } from 'react';
+import Announcement from '../Components/Announcement';
+import Categories from '../Components/Categories';
+import Footer from '../Components/Footer';
+import NavBar from '../Components/NavBar';
+import Newsletter from '../Components/Newsletter';
+import Products from '../Components/Products';
+import Cart from './Cart';
+import { Slider } from '../Components/Slider';
 
 const Home = () => {
     const [toggle, setToggle] = useState(true);

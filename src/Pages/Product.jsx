@@ -1,21 +1,19 @@
-import { faAdd, faMinus } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
-import styled from 'styled-components'
-import Announcement from '../Components/Announcement'
-import Footer from '../Components/Footer'
-import NavBar from '../Components/NavBar'
-import Newsletter from '../Components/Newsletter'
-import {mobile} from '../responsive'
+import { faAdd, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
+import styled from 'styled-components';
+import Announcement from '../Components/Announcement';
+import Footer from '../Components/Footer';
+import NavBar from '../Components/NavBar';
+import Newsletter from '../Components/Newsletter';
+import { mobile } from '../responsive';
 
-const Container = styled.div`
-
-`
+const Container = styled.div``;
 
 const Wrapper = styled.div`
     padding: 50px;
-    display:flex;
-    ${mobile({ padding: "10px", flexDirection: 'column' })}
+    display: flex;
+    ${mobile({ padding: '10px', flexDirection: 'column' })}
 `;
 
 const ImgContainer = styled.div`
@@ -26,13 +24,13 @@ const Img = styled.img`
     width: 100%;
     height: 90vh;
     object-fit: cover;
-    ${mobile({ height: "40vh" })}
+    ${mobile({ height: '40vh' })}
 `;
 
 const InfoContainer = styled.div`
     flex: 1;
     padding: 0px 50px;
-    ${mobile({ padding: "10px" })}
+    ${mobile({ padding: '10px' })}
 `;
 
 const Title = styled.h1`
@@ -53,7 +51,7 @@ const FilterContainer = styled.div`
     margin: 30px 0px;
     display: flex;
     justify-content: space-between;
-    ${mobile({ width: "100%" })}
+    ${mobile({ width: '100%' })}
 `;
 
 const Filter = styled.div`
@@ -70,7 +68,7 @@ const FilterColor = styled.div`
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background-color: ${props => props.color};
+    background-color: ${(props) => props.color};
     margin: 0px 5px;
     cursor: pointer;
 `;
@@ -80,16 +78,14 @@ const FilterSize = styled.select`
     padding: 5px;
 `;
 
-const FilterSizeOption = styled.option`
-
-`;
+const FilterSizeOption = styled.option``;
 
 const AddContainer = styled.div`
     width: 50%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    ${mobile({ width: "100%" })}
+    ${mobile({ width: '100%' })}
 `;
 
 const AmountContainer = styled.div`
@@ -116,7 +112,7 @@ const Button = styled.button`
     cursor: pointer;
     font-weight: 500;
 
-    &:hover{
+    &:hover {
         background-color: #f8f4f4;
     }
 `;
@@ -128,7 +124,7 @@ export default function Product() {
             <Announcement />
             <Wrapper>
                 <ImgContainer>
-                    <Img src="https://i.ibb.co/S6qMxwr/jean.jpg" />
+                    <Img src='https://i.ibb.co/S6qMxwr/jean.jpg' />
                 </ImgContainer>
                 <InfoContainer>
                     <Title>Denim Jumpsuit</Title>
@@ -138,8 +134,8 @@ export default function Product() {
                         <Filter>
                             <FilterTitle>Color</FilterTitle>
                             <FilterColor color={'black'} />
-                            <FilterColor color={'darkblue'}/>
-                            <FilterColor color={'gray'}/>
+                            <FilterColor color={'darkblue'} />
+                            <FilterColor color={'gray'} />
                         </Filter>
                         <Filter>
                             <FilterTitle>Size</FilterTitle>
@@ -154,9 +150,9 @@ export default function Product() {
                     </FilterContainer>
                     <AddContainer>
                         <AmountContainer>
-                            <FontAwesomeIcon style={{cursor: 'pointer'}} icon={faMinus}/>
+                            <FontAwesomeIcon style={{ cursor: 'pointer' }} icon={faMinus} />
                             <Amount>1</Amount>
-                            <FontAwesomeIcon style={{cursor: 'pointer'}} icon={faAdd} />
+                            <FontAwesomeIcon style={{ cursor: 'pointer' }} icon={faAdd} />
                         </AmountContainer>
                         <Button>ADD TO CART</Button>
                     </AddContainer>
@@ -165,5 +161,5 @@ export default function Product() {
             <Newsletter />
             <Footer />
         </Container>
-    )
+    );
 }

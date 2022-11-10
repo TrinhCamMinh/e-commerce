@@ -1,19 +1,16 @@
-import React from 'react'
-import styled from 'styled-components'
-import NavBar from '../Components/NavBar'
-import Announcement from '../Components/Announcement'
-import Products from '../Components/Products'
-import Newsletter from '../Components/Newsletter'
-import Footer from '../Components/Footer'
-import {mobile} from '../responsive'
+import React from 'react';
+import styled from 'styled-components';
+import NavBar from '../Components/NavBar';
+import Announcement from '../Components/Announcement';
+import Products from '../Components/Products';
+import Newsletter from '../Components/Newsletter';
+import Footer from '../Components/Footer';
+import { mobile } from '../responsive';
 
-
-const Container = styled.div`
-
-`;
+const Container = styled.div``;
 
 const Title = styled.h1`
-    margin:20px;
+    margin: 20px;
 `;
 
 const FilterContainer = styled.div`
@@ -22,8 +19,8 @@ const FilterContainer = styled.div`
 `;
 
 const Filter = styled.div`
-    margin:20px;
-    ${mobile({ margin: "0px 20px", display: 'flex', flexDirection: 'column' })};
+    margin: 20px;
+    ${mobile({ margin: '0px 20px', display: 'flex', flexDirection: 'column' })};
 `;
 
 const FilterText = styled.span`
@@ -35,12 +32,10 @@ const FilterText = styled.span`
 const Select = styled.select`
     padding: 10px;
     margin-right: 20px;
-    ${mobile({ margin: "10px 0px" })}
+    ${mobile({ margin: '10px 0px' })}
 `;
 
-const Option = styled.option`
-
-`;
+const Option = styled.option``;
 
 export default function ProductList() {
     return (
@@ -52,7 +47,9 @@ export default function ProductList() {
                 <Filter>
                     <FilterText>Filter Products</FilterText>
                     <Select defaultValue='Color'>
-                        <Option value='Color' disabled>Color</Option>
+                        <Option value='Color' disabled>
+                            Color
+                        </Option>
                         <Option>White</Option>
                         <Option>Black</Option>
                         <Option>Red</Option>
@@ -61,7 +58,9 @@ export default function ProductList() {
                         <Option>Green</Option>
                     </Select>
                     <Select defaultValue='Size'>
-                        <Option value='Size' disabled>Size</Option>
+                        <Option value='Size' disabled>
+                            Size
+                        </Option>
                         <Option>XS</Option>
                         <Option>S</Option>
                         <Option>M</Option>
@@ -82,5 +81,5 @@ export default function ProductList() {
             <Newsletter />
             <Footer />
         </Container>
-    )
+    );
 }
