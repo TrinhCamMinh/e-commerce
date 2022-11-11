@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import Facebook from '../assets/facebook.png';
 import Instagram from '../assets/instagram.png';
 import Twitter from '../assets/twitter.png';
@@ -123,7 +123,7 @@ export default function Footer() {
                     <Title>Contacts</Title>
                     <ContactItem>
                         <FontAwesomeIcon style={{ marginRight: '10px' }} icon={faMap} />
-                        622 Dixie Path , South Tobinchester 98336
+                        9Q Lý Chiêu Hoàng
                     </ContactItem>
                     <ContactItem>
                         <FontAwesomeIcon style={{ marginRight: '10px' }} icon={faPhone} />

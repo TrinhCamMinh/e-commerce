@@ -51,35 +51,8 @@ const Slide = styled.div`
 const ImgContainer = styled.div`
     flex: 1;
     height: 100%;
-`;
-
-const Image = styled.img`
-    height: 80%;
-    margin-left: 20px;
-`;
-
-const InfoContainer = styled.div`
-    flex: 1;
-    padding: 50px;
-    margin-right: 20px;
-`;
-
-const Title = styled.h1`
-    font-size: 70px;
-`;
-
-const Desc = styled.p`
-    margin: 50px 0px;
-    font-size: 20px;
-    font-weight: 500;
-    letter-spacing: 3px;
-`;
-
-const Button = styled.button`
-    padding: 10px;
-    font-size: 20px;
-    background-color: transparent;
-    cursor: pointer;
+    background-image: url(${(props) => props.image});
+    background-size: cover;
 `;
 
 export const Slider = () => {
@@ -101,14 +74,7 @@ export const Slider = () => {
             <Wrapper slideIndex={slideIndex}>
                 {sliderItems.map((item, index) => (
                     <Slide key={index} bg={item.bg}>
-                        <ImgContainer>
-                            <Image src={item.img} />
-                        </ImgContainer>
-                        <InfoContainer>
-                            <Title>{item.title}</Title>
-                            <Desc>{item.desc}</Desc>
-                            <Button>SHOW NOW</Button>
-                        </InfoContainer>
+                        <ImgContainer image={item.img}>{/* <Image src={item.img} /> */}</ImgContainer>
                     </Slide>
                 ))}
             </Wrapper>

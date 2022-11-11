@@ -6,6 +6,7 @@ import Login from './Pages/Login';
 import Product from './Pages/Product';
 import ProductList from './Pages/ProductList';
 import Register from './Pages/Register';
+import Detail from './Pages/Detail';
 
 export default function App() {
     return (
@@ -17,6 +18,7 @@ export default function App() {
                 <Route path='/cart' element={<Cart />} />
                 <Route path='/product' element={<Product />} />
                 <Route path='/login' element={<Login />} />
+                <Route path='/detail' element={<Detail />}/>
             </Routes>
         </BrowserRouter>
     );

@@ -1,24 +1,15 @@
 export const sliderItems = [
     {
         id: 1,
-        img: 'https://image.uniqlo.com/UQ/ST3/us/imagesgoods/452089/item/usgoods_00_452089.jpg?height=100%',
-        title: 'SUMMER SALE',
-        desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
-        bg: 'e7e7e9',
+        img: 'https://cdn.tgdd.vn/2022/10/banner/800-200-800x200-128.png',
     },
     {
         id: 2,
-        img: 'https://i.ibb.co/DG69bQ4/2.png',
-        title: 'AUTUMN COLLECTION',
-        desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
-        bg: 'fcf1ed',
+        img: 'https://cdn.tgdd.vn/2022/11/banner/800-200-800x200-15.png',
     },
     {
         id: 3,
-        img: 'https://i.ibb.co/cXFnLLV/3.png',
-        title: 'LOUNGER LOVE',
-        desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
-        bg: 'fbf0f4',
+        img: 'https://cdn.tgdd.vn/2022/10/banner/sticky-mseri3-390x97-1.png',
     },
 ];
 
@@ -43,72 +34,103 @@ export const categories = [
 export const popularProducts = [
     {
         id: 1,
-        img: 'https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png',
+        img: 'https://cdn.tgdd.vn/Products/Images/42/262402/samsung-galaxy-a13-4g-150322-112412-600x600.jpg',
         name: 'Mens Jake Guitar Vintage Crusher Tee',
         price: 20,
         size: 'XL',
     },
     {
         id: 2,
-        img: 'https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png',
+        img: 'https://cdn.tgdd.vn/Products/Images/42/271717/oppo-reno7-z-5g-thumb-1-600x600.jpg',
         name: 'Rocket Vintage Chill Cap',
         price: 20,
         size: 'L',
     },
     {
         id: 3,
-        img: 'https://www.prada.com/content/dam/pradanux_products/U/UCS/UCS319/1YOTF010O/UCS319_1YOT_F010O_S_182_SLF.png',
+        img: 'https://cdn.tgdd.vn/Products/Images/42/290877/Realme-c30s-xanh-temp-600x600.jpg',
         name: 'pradanux shirt',
         price: 30,
         size: 'XXL',
     },
     {
         id: 4,
-        img: 'https://www.burdastyle.com/pub/media/catalog/product/cache/7bd3727382ce0a860b68816435d76e26/107/BUS-PAT-BURTE-1320516/1170x1470_BS_2016_05_132_front.png',
+        img: 'https://cdn.tgdd.vn/Products/Images/522/250734/ipad-mini-6-wifi-cellular-grey-1-600x600.jpg',
         name: 'BUS PAT BURTE',
         price: 40,
         size: 'M',
     },
     {
         id: 5,
-        img: 'https://images.ctfassets.net/5gvckmvm9289/3BlDoZxSSjqAvv1jBJP7TH/65f9a95484117730ace42abf64e89572/Noissue-x-Creatsy-Tote-Bag-Mockup-Bundle-_4_-2.png',
+        img: 'https://cdn.tgdd.vn/Products/Images/42/247508/iphone-14-pro-bac-thumb-600x600.jpg',
         name: 'Noissue Creatsy Tote Bag',
         price: 50,
         size: 'XL',
     },
     {
         id: 6,
-        img: 'https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png',
+        img: 'https://cdn.tgdd.vn/Products/Images/42/258047/samsung-galaxy-z-flip4-5g-128gb-thumb-600x600.jpg',
         name: 'Rocket Vintage Chill Cap',
         price: 60,
         size: 'S',
     },
     {
         id: 7,
-        img: 'https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png',
+        img: 'https://cdn.tgdd.vn/Products/Images/42/242439/samsung-galaxy-s22-plus-090222-103121-600x600.jpg',
         name: 'Mens Jake Guitar Vintage Crusher Tee',
         price: 110,
         size: 'XL',
     },
     {
         id: 8,
-        img: 'https://www.pngarts.com/files/3/Women-Jacket-PNG-High-Quality-Image.png',
+        img: 'https://cdn.tgdd.vn/Products/Images/42/253138/vivo-x80-xanh-thumb-600x600.jpg',
         name: 'Women Jacket',
         price: 25,
         size: 'L',
     },
     {
         id: 9,
-        img: 'https://www.prada.com/content/dam/pradanux_products/U/UCS/UCS319/1YOTF010O/UCS319_1YOT_F010O_S_182_SLF.png',
+        img: 'https://cdn.tgdd.vn/Products/Images/42/279065/xiaomi-12t-series-600x600.jpeg',
         name: 'pradanux shirt',
         price: 45,
         size: 'X',
     },
     {
         id: 10,
-        img: 'https://images.ctfassets.net/5gvckmvm9289/3BlDoZxSSjqAvv1jBJP7TH/65f9a95484117730ace42abf64e89572/Noissue-x-Creatsy-Tote-Bag-Mockup-Bundle-_4_-2.png',
+        img: 'https://cdn.tgdd.vn/Products/Images/42/236186/oppo-reno6-5g-aurora-600x600.jpg',
         name: 'Noissue Creatsy Tote Bag',
         price: 50,
         size: 'L',
+    },
+];
+
+export const mockData = [
+    {
+        name: 'Iphone 14',
+        color: 'Black',
+        price: 12,
+        image: 'https://cdn.tgdd.vn/Products/Images/42/247508/iphone-14-pro-bac-thumb-600x600.jpg',
+        start: 5,
+        brand: 'Apple',
+        tags: ['mobile', 'iphone', 'apple', 'apple mobile'],
+        configuration: [
+            {
+                Screen: 'OLED, 6.1 inch, Super Retina XDR, 120 Hz',
+                OS: 'iOS 16',
+                Chip: 'Apple A16 Bionic',
+                Size: '128 GB, 256 GB, 512 GB, 1 TB',
+            },
+        ],
+        review: [
+            {
+                user: 'MINHCT',
+                comment: 'Good product',
+            },
+            {
+                user: 'Trinh Cam Minh',
+                comment: 'OK!',
+            },
+        ],
+        description: '<strong>DESCRIPTION HERE</strong>',
     },
 ];
