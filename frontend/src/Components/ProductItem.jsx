@@ -66,20 +66,20 @@ const Icon = styled.div`
     }
 `;
 
-export default function ProductItem({ item, onClick }) {
+export default function ProductItem({ item }) {
     return (
         <Container>
             <Circle />
             <Image src={item.img} />
             <Info>
-                <Icon onClick={() => onClick(item)}>
+                <Icon>
                     <FontAwesomeIcon icon={faCartShopping} />
                 </Icon>
                 <Icon>
                     <FontAwesomeIcon icon={faSearch} />
                 </Icon>
                 <Icon>
-                    <FontAwesomeIcon icon={faHeart} onClick={(e) => console.log(e.target.style.color)} />
+                    <FontAwesomeIcon icon={faHeart} />
                 </Icon>
             </Info>
         </Container>

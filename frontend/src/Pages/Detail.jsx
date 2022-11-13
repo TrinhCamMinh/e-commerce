@@ -96,10 +96,84 @@ export default function Detail() {
                         </section>
                     </div>
                     <p style={{ fontWeight: 'bold', color: '#f65658', marginBottom: '1rem' }}>$140.00</p>
-                    <p style={{ marginBottom: '1rem' }}>
-                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-                        ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                    </p>
+                    <div
+                        style={{
+                            display: 'grid',
+                            gridTemplateColumns: '5rem 5rem 5rem',
+                            gap: '1rem',
+                            marginBottom: '1rem',
+                        }}
+                    >
+                        <span
+                            style={{
+                                borderStyle: 'solid',
+                                borderWidth: 'thin',
+                                borderColor: '#ebebeb',
+                                padding: '10px 16px',
+                            }}
+                        >
+                            128GB
+                        </span>
+                        <span
+                            style={{
+                                borderStyle: 'solid',
+                                borderWidth: 'thin',
+                                borderColor: '#ebebeb',
+                                padding: '10px 16px',
+                            }}
+                        >
+                            256GB
+                        </span>
+                        <span
+                            style={{
+                                borderStyle: 'solid',
+                                borderWidth: 'thin',
+                                borderColor: '#ebebeb',
+                                padding: '10px 16px',
+                            }}
+                        >
+                            512GB
+                        </span>
+                    </div>
+                    <div
+                        style={{
+                            display: 'grid',
+                            gridTemplateColumns: '5rem 5rem 5rem 5rem 5rem',
+                            gap: '1rem',
+                            marginBottom: '1rem',
+                        }}
+                    >
+                        <span
+                            style={{
+                                borderStyle: 'solid',
+                                borderWidth: 'thin',
+                                borderColor: '#ebebeb',
+                                padding: '10px 16px',
+                            }}
+                        >
+                            128GB
+                        </span>
+                        <span
+                            style={{
+                                borderStyle: 'solid',
+                                borderWidth: 'thin',
+                                borderColor: '#ebebeb',
+                                padding: '10px 16px',
+                            }}
+                        >
+                            256GB
+                        </span>
+                        <span
+                            style={{
+                                borderStyle: 'solid',
+                                borderWidth: 'thin',
+                                borderColor: '#ebebeb',
+                                padding: '10px 16px',
+                            }}
+                        >
+                            512GB
+                        </span>
+                    </div>
                     <p style={{ color: '#77a464' }}>99994 in stock</p>
                     <div style={{ margin: '2rem 0', display: 'grid', gridTemplateColumns: '10rem 10rem', gap: '2rem' }}>
                         <div style={{ padding: '10px 16px' }}>

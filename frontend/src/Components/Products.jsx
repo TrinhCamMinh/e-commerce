@@ -10,11 +10,11 @@ const Container = styled.div`
     justify-content: space-between;
 `;
 
-export default function Products({ onClick }) {
+export default function Products() {
     return (
         <Container>
             {popularProducts.map((item, index) => (
-                <ProductItem key={index} item={item} onClick={onClick} />
+                <ProductItem key={index} item={item} />
             ))}
         </Container>
     );

@@ -69,10 +69,6 @@ const Vertical = styled.span`
     height: 16px;
 `;
 
-const Number = styled.span`
-    margin-bottom: 14px;
-    margin-left: 2px;
-`;
 
 const linkStyle = {
     textDecoration: 'none',
@@ -85,7 +81,7 @@ const Cart = styled.div`
     align-items: center;
 `;
 
-export default function NavBar({ amount, handleToggle }) {
+export default function NavBar() {
     return (
         <Container>
             <Wrapper>
@@ -96,8 +92,10 @@ export default function NavBar({ amount, handleToggle }) {
                         <FontAwesomeIcon icon={faSearch} style={{ color: 'gray', fontSize: 16 }} />
                     </SearchContainer>
                 </Left>
-                <Center onClick={handleToggle}>
-                    <Logo>MINHCT.</Logo>
+                <Center>
+                    <Link to='/' style={linkStyle}>
+                        <Logo>MINHCT.</Logo>
+                    </Link>
                 </Center>
                 <Right>
                     <Link to='register' style={linkStyle}>
@@ -111,9 +109,8 @@ export default function NavBar({ amount, handleToggle }) {
                     <Link to='productList' style={linkStyle}>
                         Item
                     </Link>
-                    <Cart onClick={handleToggle}>
+                    <Cart>
                         <FontAwesomeIcon style={{ marginLeft: '10px' }} icon={faShoppingCart} />
-                        <Number children={amount} />
                     </Cart>
                 </Right>
             </Wrapper>

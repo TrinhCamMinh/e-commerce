@@ -1,7 +1,6 @@
 import { faAdd, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 import styled from 'styled-components';
 import Footer from '../Components/Footer';
 import { mobile } from '../responsive';
@@ -147,15 +146,6 @@ const Button = styled.button`
 `;
 
 const Cart = ({ carts }) => {
-    const [amount, setAmount] = useState(0);
-    const totalPrice = [];
-
-    const calculate = (initValue, number) => {
-        return initValue + number;
-    };
-
-    carts.map((cart) => totalPrice.push(cart.price));
-
     return (
         <Container>
             <Wrapper>
@@ -164,59 +154,49 @@ const Cart = ({ carts }) => {
                         <TopButton>CONTINUE SHOPPING</TopButton>
                     </Link>
                     <TopTexts>
-                        <TopText>Shopping Bag({carts.length})</TopText>
+                        <TopText>Shopping Bag (0)</TopText>
                         <TopText>Your Wishlist (0)</TopText>
                     </TopTexts>
                     <TopButton type='filled'>CHECKOUT NOW</TopButton>
                 </Top>
                 <Bottom>
                     <Info>
-                        {carts.map((cart, index) => (
-                            <Product key={index}>
-                                <ProductDetail>
-                                    <Image src={cart.img} />
-                                    <Details>
-                                        <ProductName>
-                                            <b>Product:</b> {cart.name}
-                                        </ProductName>
-                                        <ProductId>
-                                            <b>ID:</b> {cart.id}
-                                        </ProductId>
-                                        <Color>
-                                            <ProductColor color='black' />
-                                            <ProductColor color='pink' />
-                                            <ProductColor color='green' />
-                                            <ProductColor color='gray' />
-                                        </Color>
-                                        <ProductSize>
-                                            <b>Size:</b> {cart.size}
-                                        </ProductSize>
-                                    </Details>
-                                </ProductDetail>
-                                <PriceDetail>
-                                    <ProductAmountContainer>
-                                        <FontAwesomeIcon
-                                            onClick={() => setAmount(amount + 1)}
-                                            style={{ cursor: 'pointer' }}
-                                            icon={faAdd}
-                                        />
-                                        <ProductAmount>{amount}</ProductAmount>
-                                        <FontAwesomeIcon
-                                            onClick={() => setAmount(amount - 1)}
-                                            style={{ cursor: 'pointer' }}
-                                            icon={faMinus}
-                                        />
-                                    </ProductAmountContainer>
-                                    <ProductPrice>{cart.price}$</ProductPrice>
-                                </PriceDetail>
-                            </Product>
-                        ))}
+                        <Product>
+                            <ProductDetail>
+                                <Image src='https://cdn.tgdd.vn/Products/Images/522/295467/ipad-pro-m2-12.5-inch-wifi-5g-xam-thumb-600x600.jpg' />
+                                <Details>
+                                    <ProductName>
+                                        <b>Product:Ipad Pro M2</b>
+                                    </ProductName>
+                                    <ProductId>
+                                        <b>ID:123</b>
+                                    </ProductId>
+                                    <Color>
+                                        <ProductColor color='black' />
+                                        <ProductColor color='pink' />
+                                        <ProductColor color='green' />
+                                        <ProductColor color='gray' />
+                                    </Color>
+                                    <ProductSize>
+                                        <b>Size:128GB</b>
+                                    </ProductSize>
+                                </Details>
+                            </ProductDetail>
+                            <PriceDetail>
+                                <ProductAmountContainer>
+                                    <FontAwesomeIcon style={{ cursor: 'pointer' }} icon={faAdd} />
+                                    <ProductAmount></ProductAmount>
+                                    <FontAwesomeIcon style={{ cursor: 'pointer' }} icon={faMinus} />
+                                </ProductAmountContainer>
+                                <ProductPrice>190$</ProductPrice>
+                            </PriceDetail>
+                        </Product>
                     </Info>
                     <Summary>
                         <SummaryTitle>ORDER SUMMARY</SummaryTitle>
                         <SummaryItem>
                             <SummaryItemText>Subtotal</SummaryItemText>
-                            <SummaryItemPrice>{totalPrice.reduce(calculate, 0)}$</SummaryItemPrice>
+                            <SummaryItemPrice>190$</SummaryItemPrice>
                         </SummaryItem>
                         <SummaryItem>
                             <SummaryItemText>Estimated Shipping</SummaryItemText>
@@ -228,7 +208,7 @@ const Cart = ({ carts }) => {
                         </SummaryItem>
                         <SummaryItem type='total'>
                             <SummaryItemText>Total</SummaryItemText>
-                            <SummaryItemPrice>{totalPrice.reduce(calculate, 0)}$</SummaryItemPrice>
+                            <SummaryItemPrice>190$</SummaryItemPrice>
                         </SummaryItem>
                         <Button>CHECKOUT NOW</Button>
                     </Summary>
