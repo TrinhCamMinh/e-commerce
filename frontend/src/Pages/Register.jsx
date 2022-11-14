@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { mobile } from '../responsive';
+import { useSignUp } from '../hooks/useSignUp';
 
 const Container = styled.div`
     width: 100vw;
@@ -44,7 +45,6 @@ const Agreement = styled.span`
 `;
 
 const Button = styled.button`
-    width: 40%;
     border: none;
     padding: 15px 20px;
     background-color: teal;
@@ -56,23 +56,46 @@ const Button = styled.button`
     }
 `;
 
+const Error = styled.p`
+    color: #dc143c;
+    font-weight: bold;
+    font-style: italic;
+`;
+
 export default function Register() {
+    const { error, signUp } = useSignUp();
+    const userNameRef = useRef();
+    const passwordRef = useRef();
+    const emailRef = useRef();
+    const phoneNumberRef = useRef();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        await signUp(
+            userNameRef.current.value,
+            passwordRef.current.value,
+            phoneNumberRef.current.value,
+            emailRef.current.value
+        );
+    };
+
     return (
         <Container>
             <Wrapper>
                 <Title>CREATE AN ACCOUNT</Title>
                 <Form>
-                    <Input placeholder='Name' />
-                    <Input placeholder='Last Name' />
-                    <Input placeholder='User Name' />
-                    <Input placeholder='Email' />
-                    <Input placeholder='Password' />
-                    <Input placeholder='Confirm Password' />
+                    <Input placeholder='User Name' type='text' ref={userNameRef} />
+                    <Input placeholder='Email' type='email' ref={emailRef} />
+                    <Input placeholder='Password' type='password' ref={passwordRef} />
+                    <Input placeholder='Phone Number' type='text' ref={phoneNumberRef} />
                     <Agreement>
                         By creating an account, I consent to the processing of my personal data in accordance with the{' '}
                         <b>PRIVACY POLICY</b>
                     </Agreement>
-                    <Button>CREATE</Button>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                        <Button onClick={handleSubmit}>CREATE</Button>
+                        {error && <Error>{error}</Error>}
+                    </div>
                 </Form>
             </Wrapper>
         </Container>

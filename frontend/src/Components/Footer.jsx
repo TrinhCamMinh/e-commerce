@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import Facebook from '../assets/facebook.png';
 import Instagram from '../assets/instagram.png';
 import Twitter from '../assets/twitter.png';
