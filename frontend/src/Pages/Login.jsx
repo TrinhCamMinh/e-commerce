@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { mobile } from '../responsive';
+import { useLogin } from '../hooks/useLogin';
 
 const Container = styled.div`
     width: 100vw;
@@ -38,6 +39,12 @@ const Input = styled.input`
     padding: 10px;
 `;
 
+const Error = styled.p`
+    color: #dc143c;
+    font-weight: bold;
+    font-style: italic;
+`;
+
 const Button = styled.button`
     width: 40%;
     border: none;
@@ -59,14 +66,24 @@ const Link = styled.a`
 `;
 
 export default function Login() {
+    const userNameRef = useRef();
+    const passwordRef = useRef();
+    const { login, error } = useLogin();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        await login(userNameRef.current.value, passwordRef.current.value);
+    };
+
     return (
         <Container>
             <Wrapper>
                 <Title>SIGN IN</Title>
                 <Form>
-                    <Input placeholder='username' />
-                    <Input placeholder='password' />
-                    <Button>LOGIN</Button>
+                    <Input placeholder='username' ref={userNameRef} />
+                    <Input placeholder='password' ref={passwordRef} />
+                    {error && <Error>{error}</Error>}
+                    <Button onClick={handleSubmit}>LOGIN</Button>
                     <Link>DO NOT REMEMBER THE PASSWORD?</Link>
                     <Link>CREATE A NEW ACCOUNT</Link>
                 </Form>
