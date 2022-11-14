@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useAuthContext } from '../hooks/useAuthContext';
+import { useLogout } from '../hooks/useLogout';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
@@ -69,7 +71,6 @@ const Vertical = styled.span`
     height: 16px;
 `;
 
-
 const linkStyle = {
     textDecoration: 'none',
     color: '#333',
@@ -81,7 +82,22 @@ const Cart = styled.div`
     align-items: center;
 `;
 
+const Image = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 2rem;
+`;
+
 export default function NavBar() {
+    const { user } = useAuthContext();
+    const { logout } = useLogout();
+
+    const handleLogout = async (e) => {
+        e.preventDefault();
+        await logout();
+    };
+
     return (
         <Container>
             <Wrapper>
@@ -98,14 +114,37 @@ export default function NavBar() {
                     </Link>
                 </Center>
                 <Right>
-                    <Link to='register' style={linkStyle}>
-                        Register
-                    </Link>
-                    <Vertical />
-                    <Link to='login' style={linkStyle}>
-                        Login
-                    </Link>
-                    <Vertical />
+                    {!user && (
+                        <>
+                            <Link to='register' style={linkStyle}>
+                                Register
+                            </Link>
+                            <Vertical />
+                        </>
+                    )}
+                    {!user && (
+                        <>
+                            <Link to='login' style={linkStyle}>
+                                Login
+                            </Link>
+                            <Vertical />
+                        </>
+                    )}
+                    {user && (
+                        <Image>
+                            <img
+                                src='https://picsum.photos/200/200'
+                                alt='MINHCT avatar'
+                                style={{ width: '38px', borderRadius: '6px' }}
+                            />
+                            <em>{user.userName}</em>
+                            <i
+                                className='fa-solid fa-right-from-bracket'
+                                style={{ fontSize: '24px', color: '#ff4040' }}
+                                onClick={handleLogout}
+                            ></i>
+                        </Image>
+                    )}
                     <Link to='productList' style={linkStyle}>
                         Item
                     </Link>
