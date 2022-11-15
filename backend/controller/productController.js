@@ -9,16 +9,29 @@ const getAllProducts = async (req, res) => {
     }
 };
 
-const getProductByName = (req, res) => {
-    res.json('get specific product by name');
+const getProductByQuery = async (req, res) => {
+    try {
+        const { query } = req.params;
+        const data = await Product.getSpecificProduct(query);
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 };
 
-const getProductByBrand = (req, res) => {
-    res.json('get specific product by brand');
+const getAmountOfProductPerPage = async (req, res) => {
+    try {
+        const page = req.query.page || 0;
+        const productPerPage = 2;
+        const data = await Product.getAmountOfProduct(page, productPerPage);
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 };
 
 module.exports = {
     getAllProducts,
-    getProductByName,
-    getProductByBrand,
+    getProductByQuery,
+    getAmountOfProductPerPage,
 };
