@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const productRoute = require('./routes/productRoute');
 const userRoute = require('./routes/userRoute');
 const historyRoute = require('./routes/historyRoute');
+const reviewRoute = require('./routes/reviewRoute');
 
 //middleware
 app.use(express.json());
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use('/api/product', productRoute);
 app.use('/api/user', userRoute);
 app.use('/api/history', historyRoute);
+app.use('/api/review', reviewRoute);
 
 //connect to database and start server
 mongoose

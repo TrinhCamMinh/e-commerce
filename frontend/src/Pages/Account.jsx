@@ -56,9 +56,7 @@ export default function Account() {
                             </span>
                         </div>
                         <div style={{ marginBottom: '4px', padding: '1rem' }}>
-                            <span style={{ marginRight: '11.5rem' }}>
-                                User Rating
-                            </span>
+                            <span style={{ marginRight: '11.5rem' }}>User Rating</span>
                             <span style={{ color: '#f89c2c' }}>
                                 <i className='fa-solid fa-star'></i>
                                 <i className='fa-solid fa-star'></i>
@@ -80,9 +78,7 @@ export default function Account() {
                                 padding: '1rem',
                             }}
                         >
-                            <span style={{ marginRight: '10.2rem' }}>
-                                Member Since
-                            </span>
+                            <span style={{ marginRight: '10.2rem' }}>Member Since</span>
                             <span>November 14</span>
                         </div>
                     </div>
@@ -192,10 +188,7 @@ export default function Account() {
                             marginTop: '1rem',
                         }}
                     >
-                        <i
-                            className='fa-solid fa-check'
-                            style={{ marginRight: '8px' }}
-                        ></i>
+                        <i className='fa-solid fa-check' style={{ marginRight: '8px' }}></i>
                         Submit
                     </button>
                     <img
