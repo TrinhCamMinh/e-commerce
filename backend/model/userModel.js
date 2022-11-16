@@ -84,23 +84,19 @@ userSchema.statics.login = async function (userName, password) {
 };
 
 //* [PUT]: update user account according to user ID
-userSchema.statics.updateUserAccount = async function (_id, userName, oldPassword, newPassword, phoneNumber, email) {
-    if (!oldPassword) throw Error('Please enter your current password to confirm changes');
-    if (!userName || !newPassword || !phoneNumber || !email) throw Error('All filed must be filled');
-
-    if (!validator.isStrongPassword(newPassword)) throw Error('Password is not strong enough!');
+userSchema.statics.updateUserAccount = async function (_id, userName, password, phoneNumber, email) {
+    if (!password) throw Error('Please enter your current password to confirm changes');
     if (!validator.isEmail(email)) throw Error('Email invalid');
 
     //check if password user input is correct or not
     const user = await this.findById({ _id });
-    const isMatch = await bcrypt.compare(oldPassword, user.password);
+    const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) throw Error('Incorrect password!');
 
-    //encrypted new password
-    const salt = await bcrypt.genSalt(10);
-    const hash = await bcrypt.hash(newPassword, salt);
-
-    const data = await this.findByIdAndUpdate({ _id }, { userName, password: hash, phoneNumber, email });
+    //update user account
+    await this.findByIdAndUpdate({ _id }, { userName, phoneNumber, email });
+    //* return user with new account
+    const data = await this.findById({ _id });
     return data;
 };
 

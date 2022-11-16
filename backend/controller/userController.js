@@ -33,8 +33,8 @@ const login = async (req, res) => {
 const update = async (req, res) => {
     try {
         const { id } = req.params;
-        const { userName, oldPassword, newPassword, phoneNumber, email } = req.body;
-        const data = await User.updateUserAccount(id, userName, oldPassword, newPassword, phoneNumber, email);
+        const { userName, password, phoneNumber, email } = req.body;
+        const data = await User.updateUserAccount(id, userName, password, phoneNumber, email);
         res.status(200).json(data);
     } catch (error) {
         res.status(500).json({ error: error.message });
