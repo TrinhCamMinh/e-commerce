@@ -3,6 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import styled from 'styled-components';
 
+const ProductInfo = styled.div`
+    position: absolute;
+    bottom: 4px;
+    left: 4px;
+    text-align: start;
+    z-index: 3;
+`;
+
 const Info = styled.div`
     width: 100%;
     height: 100%;
@@ -19,7 +27,6 @@ const Info = styled.div`
 `;
 
 const Container = styled.div`
-    flex: 1;
     margin: 5px;
     min-width: 280px;
     height: 350px;
@@ -70,7 +77,15 @@ export default function ProductItem({ item }) {
     return (
         <Container>
             <Circle />
-            <Image src={item.img} />
+            <Image src={item.image[0]} />
+            <ProductInfo>
+                <em style={{ fontWeight: '800' }}>{item.name}</em>
+                <br />
+                <em style={{ color: '#d0021c', fontWeight: '800' }}>
+                    {item.configuration[0].Size[0].price}
+                    <i className='fa-solid fa-dollar-sign' style={{ marginLeft: '4px' }}></i>
+                </em>
+            </ProductInfo>
             <Info>
                 <Icon>
                     <FontAwesomeIcon icon={faCartShopping} />

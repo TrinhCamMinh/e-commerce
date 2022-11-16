@@ -22,7 +22,7 @@ const getProductByQuery = async (req, res) => {
 const getAmountOfProductPerPage = async (req, res) => {
     try {
         const page = req.query.page || 0;
-        const productPerPage = 2;
+        const productPerPage = 3;
         const data = await Product.getAmountOfProduct(page, productPerPage);
         res.status(200).json(data);
     } catch (error) {

@@ -41,13 +41,13 @@ const productSchema = new Schema(
     { timestamps: true }
 );
 
-//[GET]: view all products
+//* [GET]: view all products
 productSchema.statics.viewProduct = async function () {
     const data = await this.find({});
     return data;
 };
 
-//[GET]: get a specific product base on name or brand
+//* [GET]: get a specific product base on name or brand
 productSchema.statics.getSpecificProduct = async function (query) {
     if (!query) {
         throw Error('Query must be defined');
@@ -56,12 +56,9 @@ productSchema.statics.getSpecificProduct = async function (query) {
     return data;
 };
 
-//[GET]: get a specific amount of products per page (pagination)
+//* [GET]: get a specific amount of products per page (pagination)
 productSchema.statics.getAmountOfProduct = async function (page, productPerPage) {
-    if (!page) {
-        throw Error('Page query must be defined');
-    }
-    const data = this.find({})
+    const data = await this.find({})
         .skip(page * productPerPage)
         .limit(productPerPage);
     return data;

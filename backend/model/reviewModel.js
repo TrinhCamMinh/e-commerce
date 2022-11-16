@@ -16,13 +16,13 @@ const reviewSchema = new Schema(
     { timestamps: true }
 );
 
-//[GET]: get all reviews
+//* [GET]: get all reviews
 reviewSchema.statics.viewReview = async function () {
     const data = this.find({});
     return data;
 };
 
-//[POST]: create specific review
+//* [POST]: create specific review
 reviewSchema.statics.createReview = async function (productID, review) {
     if (!productID || !review) {
         throw Error('All field must be filled');

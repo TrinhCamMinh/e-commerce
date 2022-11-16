@@ -4,17 +4,17 @@ const app = express();
 const mongoose = require('mongoose');
 const productRoute = require('./routes/productRoute');
 const userRoute = require('./routes/userRoute');
-const historyRoute = require('./routes/historyRoute');
 const reviewRoute = require('./routes/reviewRoute');
+const orderHistoryRoute = require('./routes/orderHistoryRoute');
 
 //middleware
 app.use(express.json());
 
 //routes
-app.use('/api/product', productRoute);
 app.use('/api/user', userRoute);
-app.use('/api/history', historyRoute);
+app.use('/api/product', productRoute);
 app.use('/api/review', reviewRoute);
+app.use('/api/history', orderHistoryRoute);
 
 //connect to database and start server
 mongoose

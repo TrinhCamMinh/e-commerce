@@ -22,18 +22,18 @@ const userSchema = new Schema(
             type: String,
             require: true,
             unique: true,
-        }
+        },
     },
     { timestamps: true }
 );
 
-//[GET]: get user
+//* [GET]: get user
 userSchema.statics.getUser = async function (_id) {
     const user = await this.findById({ _id });
     return user;
 };
 
-//[POST]: signup user
+//* [POST]: signup user
 userSchema.statics.signup = async function (userName, password, phoneNumber, email) {
     if (!userName || !password || !phoneNumber || !email) {
         throw Error('All field must be filled');
@@ -62,7 +62,7 @@ userSchema.statics.signup = async function (userName, password, phoneNumber, ema
     return user;
 };
 
-//[POST]: login user
+//* [POST]: login user
 userSchema.statics.login = async function (userName, password) {
     if (!userName || !password) {
         throw Error('All field must be filled');
@@ -81,6 +81,27 @@ userSchema.statics.login = async function (userName, password) {
     }
 
     return user;
+};
+
+//* [PUT]: update user account according to user ID
+userSchema.statics.updateUserAccount = async function (_id, userName, oldPassword, newPassword, phoneNumber, email) {
+    if (!oldPassword) throw Error('Please enter your current password to confirm changes');
+    if (!userName || !newPassword || !phoneNumber || !email) throw Error('All filed must be filled');
+
+    if (!validator.isStrongPassword(newPassword)) throw Error('Password is not strong enough!');
+    if (!validator.isEmail(email)) throw Error('Email invalid');
+
+    //check if password user input is correct or not
+    const user = await this.findById({ _id });
+    const isMatch = await bcrypt.compare(oldPassword, user.password);
+    if (!isMatch) throw Error('Incorrect password!');
+
+    //encrypted new password
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(newPassword, salt);
+
+    const data = await this.findByIdAndUpdate({ _id }, { userName, password: hash, phoneNumber, email });
+    return data;
 };
 
 module.exports = mongoose.model('User', userSchema);

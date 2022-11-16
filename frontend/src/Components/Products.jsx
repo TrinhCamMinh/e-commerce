@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { popularProducts } from '../data';
 import ProductItem from './ProductItem';
 
 const Container = styled.div`
@@ -11,11 +10,20 @@ const Container = styled.div`
 `;
 
 export default function Products() {
+    const [product, setProduct] = useState(null);
+
+    useEffect(() => {
+        const fetchProduct = async () => {
+            const response = await fetch('/api/product/');
+            const json = await response.json();
+            setProduct(json);
+        };
+
+        fetchProduct();
+    }, []);
     return (
         <Container>
-            {popularProducts.map((item, index) => (
-                <ProductItem key={index} item={item} />
-            ))}
+            {product && product.map((item, index) => <ProductItem key={index} item={item} />)}
         </Container>
     );
 }

@@ -15,6 +15,18 @@ const Home = () => {
             <Slider />
             <Categories />
             <Products />
+            <div
+                style={{
+                    padding: '12px 28px',
+                    backgroundColor: '#FF4742',
+                    color: '#FFFFFF',
+                    borderRadius: '6px',
+                    width: 'fit-content',
+                    margin: '0 0 1rem 46rem',
+                }}
+            >
+                <p style={{ fontSize: '16px', fontWeight: '800' }}>More</p>
+            </div>
             <Newsletter />
             <Footer />
         </>
