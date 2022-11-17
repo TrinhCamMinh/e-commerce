@@ -159,7 +159,13 @@ export default function NavBar() {
                         Item
                     </Link>
                     <Cart>
-                        <FontAwesomeIcon style={{ marginLeft: '10px' }} icon={faShoppingCart} />
+                        {user ? (
+                            <Link to={`/cart/${user._id}`}>
+                                <FontAwesomeIcon style={{ marginLeft: '10px' }} icon={faShoppingCart} />
+                            </Link>
+                        ) : (
+                            <FontAwesomeIcon style={{ marginLeft: '10px' }} icon={faShoppingCart} />
+                        )}
                     </Cart>
                 </Right>
             </Wrapper>

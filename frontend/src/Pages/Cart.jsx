@@ -1,10 +1,12 @@
 import { faAdd, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { mobile } from '../responsive';
+import { useCart } from '../hooks/useCart';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import NavBar from '../Components/NavBar';
 import Footer from '../Components/Footer';
-import { mobile } from '../responsive';
 
 const Container = styled.div``;
 
@@ -51,6 +53,8 @@ const Info = styled.div`
 const Product = styled.div`
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
+    gap: 2rem;
     ${mobile({ flexDirection: 'column' })}
 `;
 
@@ -147,12 +151,30 @@ const Button = styled.button`
 `;
 
 const Cart = () => {
+    const { id } = useParams();
+    const { getCart } = useCart();
+    const [cart, setCart] = useState(null);
+    const number = [];
+
+    const calculateTotal = (total, number) => {
+        return total + number;
+    };
+
+    useEffect(() => {
+        const fetchCart = async () => {
+            const data = await getCart(id);
+            setCart(data);
+        };
+        fetchCart();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     return (
         <Container>
             <NavBar />
             <Wrapper>
                 <Top>
-                    <Link to='productList'>
+                    <Link to='/product'>
                         <TopButton>CONTINUE SHOPPING</TopButton>
                     </Link>
                     <TopTexts>
@@ -164,42 +186,48 @@ const Cart = () => {
                 <Bottom>
                     <Info>
                         <Product>
-                            <ProductDetail>
-                                <Image src='https://cdn.tgdd.vn/Products/Images/522/295467/ipad-pro-m2-12.5-inch-wifi-5g-xam-thumb-600x600.jpg' />
-                                <Details>
-                                    <ProductName>
-                                        <b>Product:Ipad Pro M2</b>
-                                    </ProductName>
-                                    <ProductId>
-                                        <b>ID:123</b>
-                                    </ProductId>
-                                    <Color>
-                                        <ProductColor color='black' />
-                                        <ProductColor color='pink' />
-                                        <ProductColor color='green' />
-                                        <ProductColor color='gray' />
-                                    </Color>
-                                    <ProductSize>
-                                        <b>Size:128GB</b>
-                                    </ProductSize>
-                                </Details>
-                            </ProductDetail>
-                            <PriceDetail>
-                                <ProductAmountContainer>
-                                    <FontAwesomeIcon style={{ cursor: 'pointer' }} icon={faAdd} />
-                                    <ProductAmount></ProductAmount>
-                                    <FontAwesomeIcon style={{ cursor: 'pointer' }} icon={faMinus} />
-                                </ProductAmountContainer>
-                                <ProductPrice>190$</ProductPrice>
-                            </PriceDetail>
+                            {cart &&
+                                cart.map((item, index) => {
+                                    return (
+                                        <div key={index} style={{ display: 'flex', alignItems: 'center' }}>
+                                            <ProductDetail>
+                                                <Image src={item.productImage} />
+                                                <Details>
+                                                    <ProductName>
+                                                        <b>Product:{item.productName}</b>
+                                                    </ProductName>
+                                                    <ProductId>
+                                                        <b>ID:{item.productID}</b>
+                                                    </ProductId>
+                                                    <Color>
+                                                        <ProductColor color='black' />
+                                                        <ProductColor color='pink' />
+                                                        <ProductColor color='green' />
+                                                        <ProductColor color='gray' />
+                                                    </Color>
+                                                    <ProductSize>
+                                                        <b>Size:128GB</b>
+                                                    </ProductSize>
+                                                </Details>
+                                            </ProductDetail>
+                                            <PriceDetail>
+                                                <ProductAmountContainer>
+                                                    <FontAwesomeIcon style={{ cursor: 'pointer' }} icon={faAdd} />
+                                                    <ProductAmount></ProductAmount>
+                                                    <FontAwesomeIcon style={{ cursor: 'pointer' }} icon={faMinus} />
+                                                </ProductAmountContainer>
+                                                <ProductPrice>
+                                                    {item.productPrice}
+                                                    {number.push(item.productPrice)}
+                                                </ProductPrice>
+                                            </PriceDetail>
+                                        </div>
+                                    );
+                                })}
                         </Product>
                     </Info>
                     <Summary>
                         <SummaryTitle>ORDER SUMMARY</SummaryTitle>
-                        <SummaryItem>
-                            <SummaryItemText>Subtotal</SummaryItemText>
-                            <SummaryItemPrice>190$</SummaryItemPrice>
-                        </SummaryItem>
                         <SummaryItem>
                             <SummaryItemText>Estimated Shipping</SummaryItemText>
                             <SummaryItemPrice>5.90$</SummaryItemPrice>
@@ -210,7 +238,10 @@ const Cart = () => {
                         </SummaryItem>
                         <SummaryItem type='total'>
                             <SummaryItemText>Total</SummaryItemText>
-                            <SummaryItemPrice>190$</SummaryItemPrice>
+                            <SummaryItemPrice>
+                                {number.reduce(calculateTotal, 0)}
+                                {console.log(calculateTotal)}
+                            </SummaryItemPrice>
                         </SummaryItem>
                         <Button>CHECKOUT NOW</Button>
                     </Summary>

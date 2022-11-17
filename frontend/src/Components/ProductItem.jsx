@@ -1,6 +1,8 @@
 import { faCartShopping, faHeart, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
+import { useCart } from '../hooks/useCart';
+import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
 
 const ProductInfo = styled.div`
@@ -8,7 +10,7 @@ const ProductInfo = styled.div`
     bottom: 4px;
     left: 4px;
     text-align: start;
-    z-index: 3;
+    z-index: 20;
 `;
 
 const Info = styled.div`
@@ -74,11 +76,19 @@ const Icon = styled.div`
 `;
 
 export default function ProductItem({ item }) {
+    const { postCart } = useCart();
+    const { user } = useAuthContext();
+
+    const handleAddCart = async () => {
+        await postCart(user._id, item.name, item._id, item.image[0], item.configuration[0].Size[0].price);
+        console.log('post cart successfully');
+    };
+
     return (
-        <Link to={`/detail/${item._id}`}>
-            <Container>
-                <Circle />
-                <Image src={item.image[0]} />
+        <Container>
+            <Circle />
+            <Image src={item.image[0]} />
+            <Link to={`/detail/${item._id}`}>
                 <ProductInfo>
                     <em style={{ fontWeight: '800' }}>{item.name}</em>
                     <br />
@@ -87,18 +97,18 @@ export default function ProductItem({ item }) {
                         <i className='fa-solid fa-dollar-sign' style={{ marginLeft: '4px' }}></i>
                     </em>
                 </ProductInfo>
-                <Info>
-                    <Icon>
-                        <FontAwesomeIcon icon={faCartShopping} />
-                    </Icon>
-                    <Icon>
-                        <FontAwesomeIcon icon={faSearch} />
-                    </Icon>
-                    <Icon>
-                        <FontAwesomeIcon icon={faHeart} />
-                    </Icon>
-                </Info>
-            </Container>
-        </Link>
+            </Link>
+            <Info>
+                <Icon>
+                    <FontAwesomeIcon icon={faCartShopping} onClick={handleAddCart} />
+                </Icon>
+                <Icon>
+                    <FontAwesomeIcon icon={faSearch} />
+                </Icon>
+                <Icon>
+                    <FontAwesomeIcon icon={faHeart} />
+                </Icon>
+            </Info>
+        </Container>
     );
 }
