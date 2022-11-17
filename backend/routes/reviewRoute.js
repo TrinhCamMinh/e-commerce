@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { getAllReviews, createNewReview } = require('../controller/reviewController');
+const { getAllReviews, getSpecificReview, createNewReview } = require('../controller/reviewController');
+
+router.get('/:id', getSpecificReview);
 
 router.get('/', getAllReviews);
 

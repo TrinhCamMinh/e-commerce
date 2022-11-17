@@ -6,7 +6,6 @@ const reviewSchema = new Schema(
         productID: {
             type: String,
             require: true,
-            unique: true,
         },
         review: {
             type: Object,
@@ -18,7 +17,13 @@ const reviewSchema = new Schema(
 
 //* [GET]: get all reviews
 reviewSchema.statics.viewReview = async function () {
-    const data = this.find({});
+    const data = await this.find({});
+    return data;
+};
+
+// * [GET]: get specific review according to product ID
+reviewSchema.statics.getReview = async function (productID) {
+    const data = await this.find({ productID });
     return data;
 };
 

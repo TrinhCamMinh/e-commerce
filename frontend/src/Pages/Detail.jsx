@@ -1,6 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useGetProducts } from '../hooks/useGetProducts';
+import { useGetReview } from '../hooks/useGetReview';
+import { useReviewsContext } from '../hooks/useReviewsContext';
+import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
 import Announcement from '../Components/Announcement';
 import NavBar from '../Components/NavBar';
@@ -18,8 +21,12 @@ const Right = styled.div``;
 const Below = styled.div``;
 
 export default function Detail() {
+    const commentRef = useRef();
     const { id } = useParams();
     const { getProductByID, getProductByQuery } = useGetProducts();
+    const { getReviewByID, postReview } = useGetReview();
+    const { reviews } = useReviewsContext();
+    const { user } = useAuthContext();
     const [product, setProduct] = useState(null);
     const [relatedProduct, setRelatedProduct] = useState(null);
 
@@ -34,15 +41,25 @@ export default function Detail() {
             setRelatedProduct(data);
         };
 
+        const fetchReview = async () => {
+            await getReviewByID(id);
+        };
+
         fetchProduct();
         fetchRelatedProduct();
+        fetchReview();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [product]);
+    }, []);
 
     function createMarkup() {
         const data = product.description;
         return { __html: data };
     }
+
+    const handleComment = async () => {
+        console.log(commentRef.current.value);
+        await postReview(id, user.userName, commentRef.current.value);
+    };
 
     return (
         <>
@@ -201,38 +218,37 @@ export default function Detail() {
                             <h1>{product.name}'s configuration</h1>
                             <div>
                                 <p style={{ backgroundColor: '#f5f5f5', width: '20rem' }}>
-                                    Screen: <span style={{ marginLeft: '6rem' }}>IPS LCD6.71"HD+</span>
+                                    Screen:{' '}
+                                    <span style={{ marginLeft: '6rem' }}>{product.configuration[0].screen}</span>
                                 </p>
                                 <p>
-                                    OS: <span style={{ marginLeft: '6rem' }}>IPS LCD6.71"HD+</span>
+                                    OS: <span style={{ marginLeft: '6rem' }}>{product.configuration[0].OS}</span>
                                 </p>
                                 <p style={{ backgroundColor: '#f5f5f5', width: '20rem' }}>
-                                    Back Camera: <span style={{ marginLeft: '6rem' }}>IPS LCD6.71"HD+</span>
+                                    Back Camera:{' '}
+                                    <span style={{ marginLeft: '6rem' }}>{product.configuration[0].FrontCamera}</span>
                                 </p>
                                 <p>
-                                    Front Camera: <span style={{ marginLeft: '6rem' }}>IPS LCD6.71"HD+</span>
+                                    Front Camera:{' '}
+                                    <span style={{ marginLeft: '6rem' }}>{product.configuration[0].BackCamera}</span>
                                 </p>
                                 <p style={{ backgroundColor: '#f5f5f5', width: '20rem' }}>
-                                    Chip: <span style={{ marginLeft: '6rem' }}>IPS LCD6.71"HD+</span>
+                                    Chip: <span style={{ marginLeft: '6rem' }}>{product.configuration[0].Chip}</span>
                                 </p>
                                 <p>
-                                    Ram: <span style={{ marginLeft: '6rem' }}>IPS LCD6.71"HD+</span>
+                                    Ram: <span style={{ marginLeft: '6rem' }}>{product.configuration[0].Chip}</span>
                                 </p>
                                 <p style={{ backgroundColor: '#f5f5f5', width: '20rem' }}>
-                                    Size: <span style={{ marginLeft: '6rem' }}>IPS LCD6.71"HD+</span>
+                                    SIM: <span style={{ marginLeft: '6rem' }}>{product.configuration[0].Sim}</span>
                                 </p>
                                 <p>
-                                    SIM: <span style={{ marginLeft: '6rem' }}>IPS LCD6.71"HD+</span>
-                                </p>
-                                <p style={{ backgroundColor: '#f5f5f5', width: '20rem' }}>
-                                    Battery: <span style={{ marginLeft: '6rem' }}>IPS LCD6.71"HD+</span>
+                                    Battery:
+                                    <span style={{ marginLeft: '6rem' }}>{product.configuration[0].Battery}</span>
                                 </p>
                             </div>
                             <div>
                                 <section style={{ marginBottom: '1rem' }}>
                                     <span style={{ marginRight: '2rem', color: 'blue' }}>Description</span>
-                                    <span style={{ marginRight: '2rem' }}>Additional Information</span>
-                                    <span>Reviews (2)</span>
                                 </section>
                                 <section style={{ width: '70%' }}>
                                     <div dangerouslySetInnerHTML={createMarkup()}></div>
@@ -351,17 +367,36 @@ export default function Detail() {
                 )}
             </Container>
             <div>
-                <textarea cols='100' rows='5' placeholder='leave your comment here'></textarea>
-                <div>
-                    <section style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                        <img src='https://picsum.photos/50/50' alt='reviewer avatar' />
-                        <p>MINHCT</p>
-                    </section>
-                    <section>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, dolorem.</p>
-                        <small style={{ color: '#999' }}>4 hours ago</small>
-                    </section>
-                </div>
+                <textarea cols='100' rows='5' placeholder='leave your comment here' ref={commentRef}></textarea>
+                <br />
+                <button
+                    style={{
+                        padding: '10px 24px',
+                        backgroundColor: 'blue',
+                        borderColor: 'transparent',
+                        color: '#fff',
+                        fontWeight: 'bold',
+                        marginBottom: '2rem',
+                    }}
+                    onClick={handleComment}
+                >
+                    Post
+                </button>
+                {reviews &&
+                    reviews.map((item, index) => {
+                        return (
+                            <div key={index}>
+                                <section style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                    <img src='https://picsum.photos/50/50' alt='reviewer avatar' />
+                                    <p>{item.review.name}</p>
+                                </section>
+                                <section>
+                                    <p>{item.review.comment}</p>
+                                    <small style={{ color: '#999' }}>{item.review.createdAt}</small>
+                                </section>
+                            </div>
+                        );
+                    })}
             </div>
             <Footer />
         </>
