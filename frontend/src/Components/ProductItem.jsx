@@ -1,6 +1,6 @@
 import { faCartShopping, faHeart, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const ProductInfo = styled.div`
@@ -75,28 +75,30 @@ const Icon = styled.div`
 
 export default function ProductItem({ item }) {
     return (
-        <Container>
-            <Circle />
-            <Image src={item.image[0]} />
-            <ProductInfo>
-                <em style={{ fontWeight: '800' }}>{item.name}</em>
-                <br />
-                <em style={{ color: '#d0021c', fontWeight: '800' }}>
-                    {item.configuration[0].Size[0].price}
-                    <i className='fa-solid fa-dollar-sign' style={{ marginLeft: '4px' }}></i>
-                </em>
-            </ProductInfo>
-            <Info>
-                <Icon>
-                    <FontAwesomeIcon icon={faCartShopping} />
-                </Icon>
-                <Icon>
-                    <FontAwesomeIcon icon={faSearch} />
-                </Icon>
-                <Icon>
-                    <FontAwesomeIcon icon={faHeart} />
-                </Icon>
-            </Info>
-        </Container>
+        <Link to={`/detail/${item._id}`}>
+            <Container>
+                <Circle />
+                <Image src={item.image[0]} />
+                <ProductInfo>
+                    <em style={{ fontWeight: '800' }}>{item.name}</em>
+                    <br />
+                    <em style={{ color: '#d0021c', fontWeight: '800' }}>
+                        {item.configuration[0].Size[0].price}
+                        <i className='fa-solid fa-dollar-sign' style={{ marginLeft: '4px' }}></i>
+                    </em>
+                </ProductInfo>
+                <Info>
+                    <Icon>
+                        <FontAwesomeIcon icon={faCartShopping} />
+                    </Icon>
+                    <Icon>
+                        <FontAwesomeIcon icon={faSearch} />
+                    </Icon>
+                    <Icon>
+                        <FontAwesomeIcon icon={faHeart} />
+                    </Icon>
+                </Info>
+            </Container>
+        </Link>
     );
 }

@@ -320,7 +320,6 @@ export default function Account() {
                     </div>
                 </>
             )}
-
             <Footer />
         </>
     );

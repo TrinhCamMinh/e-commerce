@@ -52,7 +52,13 @@ productSchema.statics.getSpecificProduct = async function (query) {
     if (!query) {
         throw Error('Query must be defined');
     }
-    const data = await this.find({ $or: [{ name: query }, { brand: query }] });
+    const data = await this.find({ $or: [{ name: query }, { brand: query }, { tags: query }] });
+    return data;
+};
+
+// * [GET]: get a product base on ID
+productSchema.statics.getSpecificProductById = async function (_id) {
+    const data = await this.findById({ _id });
     return data;
 };
 

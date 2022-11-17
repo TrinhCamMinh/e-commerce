@@ -19,6 +19,16 @@ const getProductByQuery = async (req, res) => {
     }
 };
 
+const getProductByID = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const data = await Product.getSpecificProductById(id);
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 const getAmountOfProductPerPage = async (req, res) => {
     try {
         const page = req.query.page || 0;
@@ -33,5 +43,6 @@ const getAmountOfProductPerPage = async (req, res) => {
 module.exports = {
     getAllProducts,
     getProductByQuery,
+    getProductByID,
     getAmountOfProductPerPage,
 };

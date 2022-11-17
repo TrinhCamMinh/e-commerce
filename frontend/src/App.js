@@ -8,6 +8,7 @@ import ProductList from './Pages/ProductList';
 import Register from './Pages/Register';
 import Detail from './Pages/Detail';
 import Account from './Pages/Account';
+import Search from './Pages/Search'
 
 export default function App() {
     const { user } = useAuthContext();
@@ -25,8 +26,9 @@ export default function App() {
                     path='/login'
                     element={user ? <Navigate to='/' /> : <Login />}
                 />
-                <Route path='/detail' element={<Detail />} />
+                <Route path='/detail/:id' element={<Detail />} />
                 <Route path='/account' element={<Account />} />
+                <Route path='/search/:query' element={<Search />}/>
             </Routes>
         </BrowserRouter>
     );

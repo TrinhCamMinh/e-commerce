@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useLogout } from '../hooks/useLogout';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { mobile } from '../responsive';
@@ -92,10 +92,16 @@ const Image = styled.div`
 export default function NavBar() {
     const { user } = useAuthContext();
     const { logout } = useLogout();
+    const searchRef = useRef();
+    const navigate = useNavigate();
 
     const handleLogout = async (e) => {
         e.preventDefault();
         await logout();
+    };
+
+    const handleSearch = () => {
+        navigate(`/search/${searchRef.current.value}`);
     };
 
     return (
@@ -104,8 +110,12 @@ export default function NavBar() {
                 <Left>
                     <Language>EN</Language>
                     <SearchContainer>
-                        <Input placeholder='Search' />
-                        <FontAwesomeIcon icon={faSearch} style={{ color: 'gray', fontSize: 16 }} />
+                        <Input placeholder='Search' ref={searchRef} />
+                        <FontAwesomeIcon
+                            icon={faSearch}
+                            style={{ color: 'gray', fontSize: 16 }}
+                            onClick={handleSearch}
+                        />
                     </SearchContainer>
                 </Left>
                 <Center>
@@ -145,7 +155,7 @@ export default function NavBar() {
                             ></i>
                         </Image>
                     )}
-                    <Link to='productList' style={linkStyle}>
+                    <Link to='products' style={linkStyle}>
                         Item
                     </Link>
                     <Cart>
