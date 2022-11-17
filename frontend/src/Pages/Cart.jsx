@@ -2,6 +2,7 @@ import { faAdd, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import NavBar from '../Components/NavBar';
 import Footer from '../Components/Footer';
 import { mobile } from '../responsive';
 
@@ -145,9 +146,10 @@ const Button = styled.button`
     cursor: pointer;
 `;
 
-const Cart = ({ carts }) => {
+const Cart = () => {
     return (
         <Container>
+            <NavBar />
             <Wrapper>
                 <Top>
                     <Link to='productList'>
