@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import NavBar from '../Components/NavBar';
 import Announcement from '../Components/Announcement';
@@ -35,9 +35,17 @@ const Select = styled.select`
     ${mobile({ margin: '10px 0px' })}
 `;
 
+const PaginationContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+`;
+
 const Option = styled.option``;
 
 export default function ProductList() {
+    const [page, setPage] = useState(0);
     return (
         <Container>
             <Announcement />
@@ -77,7 +85,45 @@ export default function ProductList() {
                     </Select>
                 </Filter>
             </FilterContainer>
-            <Products />
+            <Products page={page} />
+            <PaginationContainer>
+                <button
+                    onClick={() => setPage(0)}
+                    style={{
+                        padding: '10px 28px',
+                        backgroundColor: 'pink',
+                        borderRadius: '6px',
+                        borderColor: 'transparent',
+                        color: '#fff',
+                    }}
+                >
+                    <h3 style={{ fontWeight: 'bold' }}>1</h3>
+                </button>
+                <button
+                    onClick={() => setPage(1)}
+                    style={{
+                        padding: '10px 28px',
+                        backgroundColor: 'pink',
+                        borderRadius: '6px',
+                        borderColor: 'transparent',
+                        color: '#fff',
+                    }}
+                >
+                    <h3 style={{ fontWeight: 'bold' }}>2</h3>
+                </button>
+                <button
+                    onClick={() => setPage(2)}
+                    style={{
+                        padding: '10px 28px',
+                        backgroundColor: 'pink',
+                        borderRadius: '6px',
+                        borderColor: 'transparent',
+                        color: '#fff',
+                    }}
+                >
+                    <h3 style={{ fontWeight: 'bold' }}>3</h3>
+                </button>
+            </PaginationContainer>
             <Newsletter />
             <Footer />
         </Container>

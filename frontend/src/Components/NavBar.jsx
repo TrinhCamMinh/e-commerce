@@ -155,7 +155,7 @@ export default function NavBar() {
                             ></i>
                         </Image>
                     )}
-                    <Link to='products' style={linkStyle}>
+                    <Link to='product' style={linkStyle}>
                         Item
                     </Link>
                     <Cart>
