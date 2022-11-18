@@ -6,20 +6,16 @@ const orderHistorySchema = new Schema({
         type: String,
         require: true,
     },
-    productName: {
+    name: {
         type: String,
         require: true,
     },
-    productColor: {
-        type: String,
+    image: {
+        type: Array,
         require: true,
     },
-    productSize: {
-        type: String,
-        require: true,
-    },
-    productPrice: {
-        type: Number,
+    configuration: {
+        type: Array,
         require: true,
     },
 });
@@ -31,17 +27,8 @@ orderHistorySchema.statics.getHistory = async function (userID) {
 };
 
 //* [POST]: create an order history when user purchase
-orderHistorySchema.statics.createHistory = async function (
-    userID,
-    productName,
-    productColor,
-    productSize,
-    productPrice
-) {
-    if (!userID || !productName || !productColor || !productSize || !productPrice) {
-        throw Error('All filed must be filled');
-    }
-    const data = await this.create({ userID, productName, productColor, productSize, productPrice });
+orderHistorySchema.statics.createHistory = async function (userID, name, image, configuration) {
+    const data = await this.create({ userID, name, image, configuration });
     return data;
 };
 

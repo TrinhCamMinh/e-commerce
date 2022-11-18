@@ -9,6 +9,7 @@ import Register from './Pages/Register';
 import Detail from './Pages/Detail';
 import Account from './Pages/Account';
 import Search from './Pages/Search';
+import History from './Pages/History';
 
 export default function App() {
     const { user } = useAuthContext();
@@ -23,6 +24,7 @@ export default function App() {
                 <Route path='/detail/:id' element={<Detail />} />
                 <Route path='/account' element={<Account />} />
                 <Route path='/search/:query' element={<Search />} />
+                <Route path='/history/:id' element={<History />} />
             </Routes>
         </BrowserRouter>
     );

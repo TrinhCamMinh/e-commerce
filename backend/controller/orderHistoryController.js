@@ -12,8 +12,8 @@ const getHistoryForUser = async (req, res) => {
 
 const createHistoryForUser = async (req, res) => {
     try {
-        const { userID, productName, productColor, productSize, productPrice } = req.body;
-        const data = await orderHistory.createHistory(userID, productName, productColor, productSize, productPrice);
+        const { userID, name, image, configuration } = req.body;
+        const data = await orderHistory.createHistory(userID, name, image, configuration);
         res.status(200).json(data);
     } catch (error) {
         res.status(500).json({ error: error.message });

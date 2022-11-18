@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useUpdateAccount } from '../hooks/useUpdateAccount';
+import { Link } from 'react-router-dom';
 import Announcement from '../Components/Announcement';
 import NavBar from '../Components/NavBar';
 import Footer from '../Components/Footer';
@@ -105,22 +106,24 @@ export default function Account() {
                                     <span style={{ marginRight: '10.2rem' }}>Member Since</span>
                                     <span>{moment(user.createdAt).fromNow()}</span>
                                 </div>
-                                <button
-                                    style={{
-                                        color: '#fff',
-                                        backgroundColor: '#1fae66',
-                                        border: 'transparent',
-                                        padding: '10px 12px',
-                                        borderRadius: '8px',
-                                        marginTop: '1rem',
-                                    }}
-                                >
-                                    <i
-                                        className='fa-sharp fa-solid fa-clock-rotate-left'
-                                        style={{ marginRight: '4px' }}
-                                    ></i>
-                                    See {`${user.userName}'s`} order history
-                                </button>
+                                <Link to={`/history/${user._id}`}>
+                                    <button
+                                        style={{
+                                            color: '#fff',
+                                            backgroundColor: '#1fae66',
+                                            border: 'transparent',
+                                            padding: '10px 12px',
+                                            borderRadius: '8px',
+                                            marginTop: '1rem',
+                                        }}
+                                    >
+                                        <i
+                                            className='fa-sharp fa-solid fa-clock-rotate-left'
+                                            style={{ marginRight: '4px' }}
+                                        ></i>
+                                        See {`${user.userName}'s`} order history
+                                    </button>
+                                </Link>
                             </div>
                         </section>
                         <section>
