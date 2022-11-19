@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useCart } from '../hooks/useCart';
 import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
+const formatCurrency = require('format-currency');
 
 const ProductInfo = styled.div`
     position: absolute;
@@ -87,13 +88,13 @@ export default function ProductItem({ item }) {
     return (
         <Container>
             <Circle />
-            <Image src={item.image[0]} />
+            <Image src={item.image} />
             <Link to={`/detail/${item._id}`}>
                 <ProductInfo>
                     <em style={{ fontWeight: '800' }}>{item.name}</em>
                     <br />
                     <em style={{ color: '#d0021c', fontWeight: '800' }}>
-                        {item.configuration[0].Size[0].price}
+                        {formatCurrency(item.price)}
                         <i className='fa-solid fa-dollar-sign' style={{ marginLeft: '4px' }}></i>
                     </em>
                 </ProductInfo>

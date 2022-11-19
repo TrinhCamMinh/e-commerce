@@ -40,9 +40,22 @@ const getAmountOfProductPerPage = async (req, res) => {
     }
 };
 
+const postProduct = async (req, res) => {
+    try {
+        const image = req.file;
+        console.log(image);
+        const { name, price, color, brand, tags, configuration, description } = req.body;
+        const data = await Product.createProduct(name, price, color, image, brand, tags, configuration, description);
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 module.exports = {
     getAllProducts,
     getProductByQuery,
     getProductByID,
     getAmountOfProductPerPage,
+    postProduct,
 };

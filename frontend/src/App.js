@@ -10,6 +10,8 @@ import Detail from './Pages/Detail';
 import Account from './Pages/Account';
 import Search from './Pages/Search';
 import History from './Pages/History';
+import Admin from './Pages/Admin';
+import Create from './Pages/Create';
 
 export default function App() {
     const { user } = useAuthContext();
@@ -25,6 +27,8 @@ export default function App() {
                 <Route path='/account' element={<Account />} />
                 <Route path='/search/:query' element={<Search />} />
                 <Route path='/history/:id' element={<History />} />
+                <Route path='/admin' element={<Admin />} />
+                <Route path='/admin/create' element={<Create />} />
             </Routes>
         </BrowserRouter>
     );

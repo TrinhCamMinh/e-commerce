@@ -22,5 +22,6 @@ export const useGetProducts = () => {
         const json = await response.json();
         return json;
     };
+
     return { getProducts, getProductByID, getProductByQuery, getProductPerPage };
 };

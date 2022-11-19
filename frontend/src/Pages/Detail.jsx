@@ -72,7 +72,7 @@ export default function Detail() {
                             <div>
                                 <img
                                     className='bigImage'
-                                    src={product.image[0]}
+                                    src={product.image}
                                     alt='main product'
                                     style={{
                                         height: '26rem',
@@ -83,22 +83,17 @@ export default function Detail() {
                                 />
                             </div>
                             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', marginTop: '1rem' }}>
-                                {product.image.map((item, index) => {
-                                    return (
-                                        <img
-                                            key={index}
-                                            src={item}
-                                            alt='small product'
-                                            style={{
-                                                width: '100px',
-                                                height: '100px',
-                                                borderStyle: 'solid',
-                                                borderWidth: 'thin',
-                                                borderColor: '#ebebeb',
-                                            }}
-                                        />
-                                    );
-                                })}
+                                <img
+                                    src={product.image}
+                                    alt='small product'
+                                    style={{
+                                        width: '100px',
+                                        height: '100px',
+                                        borderStyle: 'solid',
+                                        borderWidth: 'thin',
+                                        borderColor: '#ebebeb',
+                                    }}
+                                />
                             </div>
                         </Left>
                         <Right>
@@ -124,21 +119,16 @@ export default function Detail() {
                                     marginBottom: '1rem',
                                 }}
                             >
-                                {product.configuration[0].Size.map((item, index) => {
-                                    return (
-                                        <span
-                                            key={index}
-                                            style={{
-                                                borderStyle: 'solid',
-                                                borderWidth: 'thin',
-                                                borderColor: '#ebebeb',
-                                                padding: '10px 16px',
-                                            }}
-                                        >
-                                            {item.storage}
-                                        </span>
-                                    );
-                                })}
+                                <span
+                                    style={{
+                                        borderStyle: 'solid',
+                                        borderWidth: 'thin',
+                                        borderColor: '#ebebeb',
+                                        padding: '10px 16px',
+                                    }}
+                                >
+                                    {product.configuration.size}
+                                </span>
                             </div>
                             <p style={{ color: '#77a464' }}>99994 in stock</p>
                             <div
@@ -218,32 +208,31 @@ export default function Detail() {
                             <h1>{product.name}'s configuration</h1>
                             <div>
                                 <p style={{ backgroundColor: '#f5f5f5', width: '20rem' }}>
-                                    Screen:{' '}
-                                    <span style={{ marginLeft: '6rem' }}>{product.configuration[0].screen}</span>
+                                    {/* Screen: <span style={{ marginLeft: '6rem' }}>{product.configuration.screen}</span> */}
                                 </p>
                                 <p>
-                                    OS: <span style={{ marginLeft: '6rem' }}>{product.configuration[0].OS}</span>
+                                    {/* OS: <span style={{ marginLeft: '6rem' }}>{product.configuration.OS}</span> */}
                                 </p>
                                 <p style={{ backgroundColor: '#f5f5f5', width: '20rem' }}>
                                     Back Camera:{' '}
-                                    <span style={{ marginLeft: '6rem' }}>{product.configuration[0].FrontCamera}</span>
+                                    {/* <span style={{ marginLeft: '6rem' }}>{product.configuration.FrontCamera}</span> */}
                                 </p>
                                 <p>
                                     Front Camera:{' '}
-                                    <span style={{ marginLeft: '6rem' }}>{product.configuration[0].BackCamera}</span>
+                                    {/* <span style={{ marginLeft: '6rem' }}>{product.configuration.BackCamera}</span> */}
                                 </p>
                                 <p style={{ backgroundColor: '#f5f5f5', width: '20rem' }}>
-                                    Chip: <span style={{ marginLeft: '6rem' }}>{product.configuration[0].Chip}</span>
+                                    {/* Chip: <span style={{ marginLeft: '6rem' }}>{product.configuration.Chip}</span> */}
                                 </p>
                                 <p>
-                                    Ram: <span style={{ marginLeft: '6rem' }}>{product.configuration[0].Chip}</span>
+                                    {/* Ram: <span style={{ marginLeft: '6rem' }}>{product.configuration.Chip}</span> */}
                                 </p>
                                 <p style={{ backgroundColor: '#f5f5f5', width: '20rem' }}>
-                                    SIM: <span style={{ marginLeft: '6rem' }}>{product.configuration[0].Sim}</span>
+                                    {/* SIM: <span style={{ marginLeft: '6rem' }}>{product.configuration.Sim}</span> */}
                                 </p>
                                 <p>
                                     Battery:
-                                    <span style={{ marginLeft: '6rem' }}>{product.configuration[0].Battery}</span>
+                                    {/* <span style={{ marginLeft: '6rem' }}>{product.configuration[0].Battery}</span> */}
                                 </p>
                             </div>
                             <div>
@@ -347,15 +336,13 @@ export default function Detail() {
                                                     }}
                                                 >
                                                     <img
-                                                        src={item.image[0]}
+                                                        src={item.image}
                                                         style={{ width: '200px', height: '200px' }}
                                                         alt='related products'
                                                     />
                                                     <div>
                                                         <em>{item.name}</em>
-                                                        <p style={{ color: '#f65658' }}>
-                                                            {item.configuration[0].Size[0].price}
-                                                        </p>
+                                                        <p style={{ color: '#f65658' }}>{item.price}</p>
                                                     </div>
                                                 </article>
                                             );

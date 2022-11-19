@@ -140,6 +140,13 @@ export default function NavBar() {
                             <Vertical />
                         </>
                     )}
+                    {user && user.userName === 'TrinhCamMinh' ? (
+                        <Link to={'/admin'}>
+                            <p className='me-4'>Admin page</p>
+                        </Link>
+                    ) : (
+                        ''
+                    )}
                     {user && (
                         <Image>
                             <img

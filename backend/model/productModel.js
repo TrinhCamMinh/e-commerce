@@ -1,21 +1,22 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
 const productSchema = new Schema(
     {
         name: {
             type: String,
             require: true,
-            unique: true,
+        },
+        price: {
+            type: Number,
+            require: true,
         },
         color: {
             type: Array,
             require: true,
         },
         image: {
-            type: Array,
+            type: String,
             require: true,
-            unique: true,
         },
         brand: {
             type: String,
@@ -26,7 +27,7 @@ const productSchema = new Schema(
             require: true,
         },
         configuration: {
-            type: Array,
+            type: Object,
             require: true,
         },
         description: {
@@ -37,9 +38,30 @@ const productSchema = new Schema(
     { timestamps: true }
 );
 
-//* [GET]: view all products
+//* [GET]: view all products - admin functionality
 productSchema.statics.viewProduct = async function () {
     const data = await this.find({});
+    return data;
+};
+
+//* [POST]: create a new product - admin functionality
+productSchema.statics.createProduct = async function (
+    name,
+    price,
+    color,
+    image,
+    brand,
+    tags,
+    configuration,
+    description
+) {
+    if (!name || !price || !color || !image || !brand || !tags || !configuration || !description) {
+        throw Error('All filed must be filled');
+    }
+
+    const path = `/productImages/${image.filename}`;
+
+    const data = await this.create({ name, price, color, image: path, brand, tags, configuration, description });
     return data;
 };
 

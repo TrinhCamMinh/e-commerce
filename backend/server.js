@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
+const path = require('path');
 const mongoose = require('mongoose');
 const productRoute = require('./routes/productRoute');
 const userRoute = require('./routes/userRoute');
@@ -9,6 +10,8 @@ const orderHistoryRoute = require('./routes/orderHistoryRoute');
 const cartRoute = require('./routes/cartRoute');
 
 //middleware
+app.use(express.static(path.join(__dirname, '../backend/uploads')));
+console.log(path.join(__dirname, '../backend/uploads'));
 app.use(express.json());
 
 //routes
