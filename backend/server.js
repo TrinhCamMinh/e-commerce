@@ -11,7 +11,6 @@ const cartRoute = require('./routes/cartRoute');
 
 //middleware
 app.use(express.static(path.join(__dirname, '../backend/uploads')));
-console.log(path.join(__dirname, '../backend/uploads'));
 app.use(express.json());
 
 //routes

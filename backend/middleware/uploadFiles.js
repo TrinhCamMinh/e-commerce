@@ -4,11 +4,10 @@ const multer = require('multer');
 const storageEngine = multer.diskStorage({
     destination: './uploads/productImages/',
     filename: function (req, file, callback) {
-        callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+        callback(null, file.fieldname + '-' + file.originalname);
     },
 });
 
-// file filter for multer
 const fileFilter = (req, file, callback) => {
     const pattern = /jpg|png|svg/; // regex
 
@@ -22,7 +21,7 @@ const fileFilter = (req, file, callback) => {
 // initialize multer
 const upload = multer({
     storage: storageEngine,
-    fileFilter: fileFilter,
+    fileFilter,
 });
 
 module.exports = upload;

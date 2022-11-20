@@ -58,7 +58,6 @@ productSchema.statics.createProduct = async function (
     if (!name || !price || !color || !image || !brand || !tags || !configuration || !description) {
         throw Error('All filed must be filled');
     }
-
     const path = `/productImages/${image.filename}`;
 
     const data = await this.create({ name, price, color, image: path, brand, tags, configuration, description });
