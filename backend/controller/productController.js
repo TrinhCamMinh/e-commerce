@@ -43,33 +43,8 @@ const getAmountOfProductPerPage = async (req, res) => {
 const postProduct = async (req, res) => {
     try {
         const image = req.file;
-        const {
-            name,
-            price,
-            color,
-            brand,
-            tag,
-            screen,
-            OS,
-            BackCamera,
-            FrontCamera,
-            Chip,
-            Ram,
-            Sim,
-            Battery,
-            description,
-        } = req.body;
-        const tags = tag.split(',');
-        const configuration = {
-            screen,
-            OS,
-            BackCamera,
-            FrontCamera,
-            Chip,
-            Ram,
-            Sim,
-            Battery,
-        };
+        console.log(image);
+        const { name, price, color, brand, tags, configuration, description } = req.body;
         const data = await Product.createProduct(name, price, color, image, brand, tags, configuration, description);
         res.status(200).json(data);
     } catch (error) {

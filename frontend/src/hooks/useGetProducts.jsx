@@ -23,16 +23,5 @@ export const useGetProducts = () => {
         return json;
     };
 
-    const postProduct = async (form) => {
-        const response = await fetch(`/api/product`, {
-            method: 'POST',
-            body: form,
-        });
-        const json = await response.json();
-        if (!response.ok) console.log('post fail');
-        else console.log('post success');
-        return json;
-    };
-
-    return { getProducts, getProductByID, getProductByQuery, getProductPerPage, postProduct };
+    return { getProducts, getProductByID, getProductByQuery, getProductPerPage };
 };
